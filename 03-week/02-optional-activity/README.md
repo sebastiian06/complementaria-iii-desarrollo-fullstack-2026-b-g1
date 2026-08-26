@@ -1,5 +1,7 @@
 # 📊 API DE RICK Y MORTY
 
+The **Rick and Morty Character Explorer** is a single-page web application built with vanilla HTML, CSS, and JavaScript that allows users to search and display characters from the popular animated series. The application consumes the public **Rick and Morty API** (https://rickandmortyapi.com), which provides character data including names, status, species, gender, location, and episode appearances. When a user performs a search, the app fetches data from the API endpoint `/api/character/?name={query}` and processes the JSON response to extract relevant information. The interface handles four key states: **loading** (shows a spinner and animated bars while fetching data), **success** (displays a list of character cards with avatars and details), **empty** (informs the user when no characters match the search term), and **error** (shows a friendly message when the API request fails or the network is offline). By managing these states effectively, the application provides a smooth user experience regardless of the API response or connection status, demonstrating fundamental frontend concepts like DOM manipulation, asynchronous fetching, and state management without external libraries.
+
 ## Estructura de la Respuesta JSON
 
 ```json
@@ -56,7 +58,7 @@ displayCharacters(data.results);
 ```
 
 
-# 🚀 EJECUTAR Y PROBAR
+## 🚀 EJECUTAR Y PROBAR
 
 ### Ejecutar index.html en el navegador
 
@@ -78,3 +80,50 @@ displayCharacters(data.results);
 2. Datos: Lista de personajes con avatar y detalles
 3. Vacío: Busca "xyzabc123" para ver mensaje
 4. Error: Desconecta internet para ver error
+
+## 📁 Estructura del Proyecto
+
+```text
+api-books-app/
+├── index.html          # Estructura HTML5 semántica
+├── styles.css          # Estilos CSS3 con Flexbox/Grid
+└── script.js           # JavaScript con consumo de API
+```
+
+## 🛠️ Tecnologías Utilizadas
+
+- HTML5: Estructura semántica
+
+- CSS3: Diseño responsive con Flexbox y Grid
+
+- JavaScript (ES6+): Fetch API, async/await, DOM manipulation
+
+- Rick and Morty API: Fuente de datos pública
+
+
+## 📊 Estados de la Interfaz
+
+|Estado	|Visual	|Condición|
+|-------|-------|---------|
+|Inicial	|Mensaje: "Busca personajes"	|Página cargada|
+|Cargando	|Spinner + barras animadas	|Esperando respuesta de la API|
+|Con Datos	|Lista de personajes	|API respondió con resultados|
+|Vacío	|Mensaje: "No se encontraron"	|Sin resultados para la búsqueda|
+|Error	|Mensaje de error + botón reintentar	|Falló la conexión o el servidor|
+
+## 📝 Aprendizajes
+
+- Consumo de APIs públicas con Fetch API
+
+- Manejo de estados (carga, éxito, error, vacío)
+
+- Manipulación del DOM sin frameworks
+
+- Manejo de errores con try/catch
+
+- Diseño responsive con CSS moderno
+
+- Validación de entrada de usuario
+
+- Debounce para optimizar búsquedas
+
