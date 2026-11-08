@@ -1,0 +1,17 @@
+# Backend
+api/target/
+*.iml
+.idea/
+*.log
+
+# Frontend
+front/node_modules/
+front/dist/
+front/.vite/
+
+# Docker
+*.pid
+
+# OS
+.DS_Store
+Thumbs.db

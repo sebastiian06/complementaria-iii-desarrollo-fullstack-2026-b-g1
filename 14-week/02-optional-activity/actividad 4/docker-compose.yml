@@ -1,0 +1,49 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: actividad4-postgres
+    environment:
+      POSTGRES_DB: actividad4
+      POSTGRES_USER: actividad4
+      POSTGRES_PASSWORD: actividad4
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U actividad4 -d actividad4"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  api:
+    build:
+      context: ./api
+    container_name: actividad4-api
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/actividad4
+      SPRING_DATASOURCE_USERNAME: actividad4
+      SPRING_DATASOURCE_PASSWORD: actividad4
+      JWT_SECRET: cambia-esto-por-un-secreto-largo-de-al-menos-32-caracteres-1234
+      SPRING_FLYWAY_LOCATIONS: filesystem:/bd
+    volumes:
+      - ./bd:/bd:ro
+    ports:
+      - "8080:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  front:
+    build:
+      context: ./front
+    container_name: actividad4-front
+    environment:
+      VITE_API_URL: http://localhost:8080
+    ports:
+      - "5173:5173"
+    depends_on:
+      - api
+
+volumes:
+  postgres_data:

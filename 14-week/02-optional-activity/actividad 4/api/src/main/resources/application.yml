@@ -1,0 +1,30 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: actividad4-api
+
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5433/actividad4}
+    username: ${SPRING_DATASOURCE_USERNAME:actividad4}
+    password: ${SPRING_DATASOURCE_PASSWORD:actividad4}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+  flyway:
+    enabled: true
+    locations: ${SPRING_FLYWAY_LOCATIONS:filesystem:../bd}
+
+app:
+  jwt:
+    secret: ${JWT_SECRET:cambia-esto-por-un-secreto-largo-de-al-menos-32-caracteres-1234}
+    expiration-ms: 3600000
+  cors:
+    allowed-origins: http://localhost:5173
